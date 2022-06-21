@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, only: %i[ edit update destroy ]
+  helper_method :compose_tag
 
   # GET /posts or /posts.json
   def index
@@ -58,6 +59,10 @@ class PostsController < ApplicationController
     end
   end
 
+  def compose_tag(id)
+    Tag.find(id).description
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -66,6 +71,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :post_text)
+      params.require(:post).permit(:title, :post_text, :tag_id)
     end
 end

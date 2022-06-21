@@ -21,7 +21,14 @@
     <%= form.text_area :post_text %>
   </div>
 
+  <div>
+    <%= form.label :tag_id %>
+    <%= form.select :tag_id, Tag.all.collect{| tag | [tag.description, tag.id]}, include_blank: true %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
+  <br>
+  <br>
 <% end %>
