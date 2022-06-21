@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :posts
   get 'user_backoffice/index'
   root to: 'home#index'
   devise_for :users
